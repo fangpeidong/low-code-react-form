@@ -116,7 +116,11 @@ function useLoadQuestionData() {
   useEffect(() => {
     if (!data) return;
     const { title = '', componentList = [] } = data;
-    dispatch(resetComponents({ componentList }));
+    let selectedId = '';
+    if (componentList.length > 0) {
+      selectedId = componentList[0].fe_id;
+    }
+    dispatch(resetComponents({ componentList, selectedId }));
   }, [data]);
 
   return { errorMsg: '', loading: false };

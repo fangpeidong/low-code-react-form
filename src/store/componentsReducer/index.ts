@@ -11,10 +11,12 @@ export type ComponentInfoType = {
 };
 
 export type ComponentsStateType = {
+  selectedId: string;
   componentList: Array<ComponentInfoType>;
 };
 
 const INIT_STATE: ComponentsStateType = {
+  selectedId: '',
   componentList: []
 };
 
@@ -28,10 +30,17 @@ export const componentsSlice = createSlice({
       action: PayloadAction<ComponentsStateType>
     ) => {
       return action.payload;
+    },
+    // 修改 selectedId
+    changeSelectedId: (
+      state: ComponentsStateType,
+      action: PayloadAction<string>
+    ) => {
+      state.selectedId = action.payload;
     }
   }
 });
 
-export const { resetComponents } = componentsSlice.actions;
+export const { resetComponents, changeSelectedId } = componentsSlice.actions;
 
 export default componentsSlice.reducer;

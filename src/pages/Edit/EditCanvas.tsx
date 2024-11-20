@@ -1,11 +1,14 @@
-import React, { FC } from 'react';
-import QuestionTitle from '../../components/QuestionTitle/Component';
-import QuestionInput from '../../components/QuestionInput/Component';
+import React, { FC, MouseEvent } from 'react';
 import styles from './EditCanvas.module.scss';
 import { Spin } from 'antd';
 import useGetComponentInfo from '../../hooks/useGetComponentInfo';
 import { getComponentConfByType } from '../../components';
-import { ComponentInfoType } from '../../store/componentsReducer';
+import {
+  changeSelectedId,
+  ComponentInfoType
+} from '../../store/componentsReducer';
+import { useDispatch } from 'react-redux';
+import classNames from 'classnames';
 
 type PropsType = {
   loading: boolean;
@@ -20,7 +23,13 @@ function getComponent(componentInfo: ComponentInfoType) {
 }
 
 const EditCanvas: FC<PropsType> = ({ loading }) => {
-  const { componentList } = useGetComponentInfo();
+  const { componentList, selectedId } = useGetComponentInfo();
+  const dispatch = useDispatch();
+  // 点击组件，选中
+  function handleClick(event: MouseEvent, id: string) {
+    event.stopPropagation(); // 阻止冒泡
+    dispatch(changeSelectedId(id));
+  }
 
   console.log(componentList, 'xxx');
   if (loading) {
@@ -34,24 +43,23 @@ const EditCanvas: FC<PropsType> = ({ loading }) => {
     <div className={styles.canvas}>
       {componentList.map((c) => {
         const { fe_id } = c;
+        const wrapperDefaultClassName = styles['component-wrapper'];
+        const selectedClassName = styles.selected;
+        const wrapperClassName = classNames({
+          [wrapperDefaultClassName]: true,
+          [selectedClassName]: fe_id === selectedId
+        });
 
         return (
-          <div key={fe_id} className={styles['component-wrapper']}>
+          <div
+            key={fe_id}
+            className={wrapperClassName}
+            onClick={(e) => handleClick(e, fe_id)}
+          >
             <div className={styles.component}>{getComponent(c)}</div>
           </div>
         );
       })}
-
-      {/* <div className={styles['component-wrapper']}>
-        <div className={styles.component}>
-          <QuestionTitle />
-        </div>
-      </div>
-      <div className={styles['component-wrapper']}>
-        <div className={styles.component}>
-          <QuestionInput />
-        </div>
-      </div> */}
     </div>
   );
 };

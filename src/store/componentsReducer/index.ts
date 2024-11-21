@@ -6,8 +6,8 @@ export type ComponentInfoType = {
   fe_id: string;
   type: string;
   title: string;
-  // isHidden: boolean;
-  // isLocked: boolean;
+  isHidden?: boolean;
+  isLocked?: boolean;
   props: ComponentPropsType;
 };
 
@@ -76,6 +76,37 @@ export const componentsSlice = createSlice({
       state.selectedId = newSelectedId;
       const index = componentList.findIndex((c) => c.fe_id === removeId);
       componentList.splice(index, 1);
+    },
+    // 隐藏/显示 组件
+    changeComponentHidden: (
+      state: ComponentsStateType,
+      action: PayloadAction<{ fe_id: string; isHidden: boolean }>
+    ) => {
+      const { componentList } = state;
+      const { fe_id, isHidden } = action.payload;
+
+      let newSelectedId = '';
+      if (isHidden) {
+        newSelectedId = getNextSelectedId(fe_id, componentList);
+      } else {
+        newSelectedId = fe_id;
+      }
+
+      const curComp = componentList.find((c) => c.fe_id === fe_id);
+      if (curComp) {
+        curComp.isHidden = isHidden;
+      }
+    },
+    // 锁定/解锁组件
+    toggleComponentLocked: (
+      state: ComponentsStateType,
+      action: PayloadAction<{ fe_id: string }>
+    ) => {
+      const { fe_id } = action.payload;
+      const curComp = state.componentList.find((c) => c.fe_id === fe_id);
+      if (curComp) {
+        curComp.isLocked = !curComp.isLocked;
+      }
     }
   }
 });
@@ -85,7 +116,9 @@ export const {
   changeSelectedId,
   addComponent,
   changeComponentProps,
-  removeSelectedComponent
+  removeSelectedComponent,
+  changeComponentHidden,
+  toggleComponentLocked
 } = componentsSlice.actions;
 
 export default componentsSlice.reducer;

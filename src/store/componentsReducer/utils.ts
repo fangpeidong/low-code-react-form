@@ -4,19 +4,20 @@ export function getNextSelectedId(
   fe_id: string,
   componentList: ComponentInfoType[]
 ) {
-  const index = componentList.findIndex((c) => c.fe_id === fe_id);
+  const visibleComponentList = componentList.filter((c) => !c.isHidden);
+  const index = visibleComponentList.findIndex((c) => c.fe_id === fe_id);
   if (index < 0) return '';
 
   let newSelectedId = '';
-  const length = componentList.length;
+  const length = visibleComponentList.length;
   if (length <= 1) {
     newSelectedId = '';
   } else {
     if (index + 1 === length) {
       // 删除最后一个
-      newSelectedId = componentList[index - 1].fe_id;
+      newSelectedId = visibleComponentList[index - 1].fe_id;
     } else {
-      newSelectedId = componentList[index + 1].fe_id;
+      newSelectedId = visibleComponentList[index + 1].fe_id;
     }
   }
   return newSelectedId;

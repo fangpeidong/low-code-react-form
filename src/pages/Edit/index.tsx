@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import styles from './index.module.scss';
 import EditCanvas from './EditCanvas';
 import useLoadQuestionData from '../../hooks/useLoadQuestionData';
@@ -18,7 +18,6 @@ const Edit: FC = () => {
   return (
     <div className={styles.container}>
       <EditHeader />
-      {/* <div style={{ backgroundColor: '#fff', height: '40px' }}>Header</div> */}
       <div className={styles['content-wrapper']}>
         <div className={styles.content}>
           <div className={styles.left}>

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { nanoid } from 'nanoid';
 import { componentConfGroup, ComponentConfType } from '../../components';
 import { Typography } from 'antd';

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import useGetComponentInfo from '../../hooks/useGetComponentInfo';
 import { ComponentPropsType, getComponentConfByType } from '../../components';
 import { useDispatch } from 'react-redux';

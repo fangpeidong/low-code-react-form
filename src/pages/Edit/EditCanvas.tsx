@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent } from 'react';
+import { FC, MouseEvent } from 'react';
 import styles from './EditCanvas.module.scss';
 import { Spin } from 'antd';
 import useGetComponentInfo from '../../hooks/useGetComponentInfo';

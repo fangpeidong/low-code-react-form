@@ -9,9 +9,12 @@ function useGetComponentInfo() {
 
   const { componentList = [], selectedId } = components;
 
+  const selectedComponent = componentList.find((c) => c.fe_id === selectedId);
+
   return {
     componentList,
-    selectedId
+    selectedId,
+    selectedComponent
   };
 }
 

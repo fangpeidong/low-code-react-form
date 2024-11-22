@@ -1,3 +1,5 @@
+![项目成果](./src/assets/images/example.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -26,10 +26,10 @@ const EditToolbar: FC = () => {
   function handleDelete() {
     dispatch(removeSelectedComponent());
   }
-  // 隐藏
-  function handleHidden() {
-    dispatch(changeComponentHidden({ fe_id: selectedId, isHidden: true }));
-  }
+  // // 隐藏
+  // function handleHidden() {
+  //   dispatch(changeComponentHidden({ fe_id: selectedId, isHidden: true }));
+  // }
   // 锁定
   function handleLock() {
     dispatch(toggleComponentLocked({ fe_id: selectedId }));
@@ -52,13 +52,13 @@ const EditToolbar: FC = () => {
           onClick={handleDelete}
         ></Button>
       </Tooltip>
-      <Tooltip title="隐藏">
+      {/* <Tooltip title="隐藏">
         <Button
           shape="circle"
           icon={<EyeInvisibleOutlined />}
           onClick={handleHidden}
         ></Button>
-      </Tooltip>
+      </Tooltip> */}
       <Tooltip title="锁定">
         <Button
           shape="circle"

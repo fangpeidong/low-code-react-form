@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { Tabs } from 'antd';
-import { FileTextOutlined, SettingOutlined } from '@ant-design/icons';
+import { Tabs, Space } from 'antd';
+import { FileTextOutlined } from '@ant-design/icons';
 import ComponentProp from './ComponentProp';
 
 const RightPanel: FC = () => {
@@ -8,22 +8,12 @@ const RightPanel: FC = () => {
     {
       key: 'prop',
       label: (
-        <span>
+        <Space>
           <FileTextOutlined />
           属性
-        </span>
+        </Space>
       ),
       children: <ComponentProp />
-    },
-    {
-      key: 'setting',
-      label: (
-        <span>
-          <SettingOutlined />
-          页面设置
-        </span>
-      ),
-      children: <div>图层</div>
     }
   ];
 

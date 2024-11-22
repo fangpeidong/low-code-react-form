@@ -115,7 +115,7 @@ function useLoadQuestionData() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!data) return;
-    const { title = '', componentList = [] } = data;
+    const { componentList = [] } = data;
     let selectedId = '';
     if (componentList.length > 0) {
       selectedId = componentList[0].fe_id;

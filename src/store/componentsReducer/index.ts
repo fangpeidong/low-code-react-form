@@ -96,6 +96,7 @@ export const componentsSlice = createSlice({
       } else {
         newSelectedId = fe_id;
       }
+      state.selectedId = newSelectedId;
 
       const curComp = componentList.find((c) => c.fe_id === fe_id);
       if (curComp) {
